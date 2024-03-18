@@ -3,6 +3,7 @@ import { useState } from "react";
 import '../css/toDoForm.css';
 import New from "./toDoNew";
 
+
 import {
   IconButton,
   DeleteIcon,
@@ -45,8 +46,8 @@ export default function Form() {
             New +
           </Button>
         </div>
-
         <New handleOpenDialog={openDialog} handleCloseDialog={handleDialogClose} saveTask={handleSaveTask}/>
+        
       </form>
     </div>
   );
