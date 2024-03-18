@@ -1,7 +1,4 @@
-import React from "react";
-import { useState } from "react";
-import '../css/toDoNew.css';
-
+import React, { useState } from "react";
 import {
   IconButton,
   DeleteIcon,
@@ -11,9 +8,24 @@ import {
   DialogTitle,
   Button,
   TextField,
-} from '@mui/material'
+} from "@mui/material";
 
 export default function New({ handleOpenDialog, handleCloseDialog, saveTask }) {
+  const [newTaskTitle, setNewTaskTitle] = useState("");
+  const [newTaskDescription, setNewTaskDescription] = useState("");
+
+  const handleSaveTask = () => {
+    saveTask({ title: newTaskTitle, description: newTaskDescription });
+    handleCloseDialog();
+  }
+
+  const handleTitleChange = (event) => {
+    setNewTaskTitle(event.target.value);
+  };
+
+  const handleDescriptionChange = (event) => {
+    setNewTaskDescription(event.target.value);
+  };
 
   return (
     <Dialog open={handleOpenDialog} onClose={handleCloseDialog}>
@@ -23,6 +35,8 @@ export default function New({ handleOpenDialog, handleCloseDialog, saveTask }) {
           label="Name of the task"
           margin="normal"
           className="textfield"
+          value={newTaskTitle}
+          onChange={handleTitleChange}
         />
         <TextField
           label="Task description"
@@ -30,10 +44,12 @@ export default function New({ handleOpenDialog, handleCloseDialog, saveTask }) {
           multiline
           rows={4}
           className="textfield"
+          value={newTaskDescription}
+          onChange={handleDescriptionChange}
         />
       </DialogContent>
       <DialogActions>
-        <Button variant="contained" type="submit" onClick={saveTask}>
+        <Button variant="contained" type="submit" onClick={handleSaveTask}>
           Save
         </Button>
         <Button variant="outlined" onClick={handleCloseDialog}>

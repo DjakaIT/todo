@@ -1,7 +1,8 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import '../css/toDoForm.css';
 import New from "./toDoNew";
+import ToDoList from "./toDoList";
+import { nanoid } from "nanoid";
 
 
 import {
@@ -18,12 +19,18 @@ import {
 
 export default function Form() {
   const [openDialog, setOpenDialog] = useState(false);
+  const [tasks, setTasks] = useState([]);
 
+  const handleSaveTask = (newTaskData) => {
+    const newTask = {
+      id: nanoid(),
+      ...newTaskData, 
+      completed: false, 
+    };
 
-  const handleSaveTask = (e) => {
-    e.preventDefault();
-    setOpenDialog(false); 
-  }
+    setTasks([...tasks, newTask]);
+    setOpenDialog(false);
+  };
 
   const handleDialogOpen = () => {
     setOpenDialog(true);
@@ -46,8 +53,12 @@ export default function Form() {
             New +
           </Button>
         </div>
-        <New handleOpenDialog={openDialog} handleCloseDialog={handleDialogClose} saveTask={handleSaveTask}/>
-        
+        <New 
+          handleOpenDialog={openDialog} 
+          handleCloseDialog={handleDialogClose} 
+          saveTask={handleSaveTask}
+        />
+        <ToDoList tasks={tasks} />
       </form>
     </div>
   );
