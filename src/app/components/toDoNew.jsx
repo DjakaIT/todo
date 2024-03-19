@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import '../css/toDoNew.css';
 
 import {
-  IconButton,
-  DeleteIcon,
+
   Dialog,
   DialogActions,
   DialogContent,

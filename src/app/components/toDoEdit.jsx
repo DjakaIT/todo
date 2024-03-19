@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Dialog,
   DialogActions,
@@ -8,9 +9,9 @@ import {
   Button,
 } from "@mui/material";
 
-export default function EditTask({ taskToEdit, handleUpdateTask, handleCloseDialog, open }) {
-  const [title, setTitle] = useState(taskToEdit?.title || ""); 
-  const [description, setDescription] = useState(taskToEdit?.description || ""); 
+export default function EditTask({ taskToEdit, handleUpdateTask, handleOpenDialog, handleCloseDialog}) {
+  const [title, setTitle] = useState(taskToEdit?.title || "");
+  const [description, setDescription] = useState(taskToEdit?.description || "");
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -27,7 +28,7 @@ export default function EditTask({ taskToEdit, handleUpdateTask, handleCloseDial
   };
 
   return (
-    <Dialog open={open} onClose={handleCloseDialog}>
+    <Dialog open={handleOpenDialog} onClose={handleCloseDialog}>
       <DialogTitle>Edit Task</DialogTitle>
       <DialogContent className="taskDetails">
         <TextField

@@ -22,6 +22,7 @@ export default function Form() {
   const [updatedTasks, setUpdatedTasks] = useState(null);
   const [editTaskDialogOpen, setEditTaskDialogOpen] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null); 
+  
 
   const handleSaveTask = (newTaskData) => {
     const newTask = {
@@ -66,7 +67,9 @@ export default function Form() {
 
   return (
     <div className="mainDivForm">
+
       <form action="" className="todoForm">
+
         <div className="formTitleDiv">
           <h2 className="formTitle">Manage tasks</h2>
           <Button
@@ -77,6 +80,7 @@ export default function Form() {
             New +
           </Button>
         </div>
+
         <New 
           handleOpenDialog={openDialog} 
           handleCloseDialog={handleDialogClose} 
@@ -91,9 +95,9 @@ export default function Form() {
           taskToEdit={taskToEdit}
           handleCloseDialog={handleDialogClose}
           handleUpdateTask={handleUpdateTask}
-          open={editTaskDialogOpen}
-
+          handleOpenDialog={editTaskDialogOpen}
         />
+
       </form>
     </div>
   );
