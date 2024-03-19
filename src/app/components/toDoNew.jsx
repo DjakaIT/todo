@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import '../css/toDoNew.css';
+
 import {
   IconButton,
   DeleteIcon,
@@ -30,7 +32,7 @@ export default function New({ handleOpenDialog, handleCloseDialog, saveTask }) {
   return (
     <Dialog open={handleOpenDialog} onClose={handleCloseDialog}>
       <DialogTitle>Add a new task</DialogTitle>
-      <DialogContent>
+      <DialogContent className="taskDetails">
         <TextField
           label="Name of the task"
           margin="normal"
