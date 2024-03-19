@@ -18,6 +18,8 @@ export default function New({ handleOpenDialog, handleCloseDialog, saveTask }) {
   const handleSaveTask = () => {
     saveTask({ title: newTaskTitle, description: newTaskDescription });
     handleCloseDialog();
+    setNewTaskTitle(""); 
+    setNewTaskDescription("");
   }
 
   const handleTitleChange = (event) => {

@@ -25,6 +25,7 @@ export default function EditTask({ taskToEdit, handleUpdateTask, handleOpenDialo
     const updatedData = { title, description };
     handleUpdateTask(updatedData, taskToEdit.id); 
     handleCloseDialog();
+   
   };
 
   return (
