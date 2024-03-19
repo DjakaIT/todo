@@ -48,8 +48,29 @@
     font-style: normal;
   }
 
-  .completed-task{
-    opacity: 0.7;
-    text-decoration: line-through;
-  }  
+  .editTask{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+   
+  }
 
+  .editIcon{
+    color: rgb(0, 150, 75);
+  }
+
+  .task-description{
+  
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+
+  }
+
+  .edit-task{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }

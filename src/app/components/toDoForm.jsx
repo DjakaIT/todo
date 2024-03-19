@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import '../css/toDoForm.css';
 import New from "./toDoNew";
 import ToDoList from "./toDoList";
+import EditTask from "./toDoEdit";
 import { nanoid } from "nanoid";
-
 
 import {
   IconButton,
@@ -16,20 +16,44 @@ import {
   TextField,
 } from '@mui/material'
 
-
 export default function Form() {
   const [openDialog, setOpenDialog] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [updatedTasks, setUpdatedTasks] = useState(null);
+  const [editTaskDialogOpen, setEditTaskDialogOpen] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState(null); 
 
   const handleSaveTask = (newTaskData) => {
     const newTask = {
       id: nanoid(),
-      ...newTaskData, 
-      completed: false, 
+      ...newTaskData,
+      completed: false,
     };
 
     setTasks([...tasks, newTask]);
     setOpenDialog(false);
+  };
+
+  const handleDeleteTask = (taskId) => {
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(updatedTasks);
+  };
+
+  const handleEditTask = (task) => {
+    setTaskToEdit(task); 
+    setEditTaskDialogOpen(true); 
+  };
+
+  const handleUpdateTask = (updateData, taskId) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, ...updateData };
+      }
+      return task;
+    });
+
+    setTasks(updatedTasks);
+    setEditTaskDialogOpen(false); 
   };
 
   const handleDialogOpen = () => {
@@ -56,9 +80,20 @@ export default function Form() {
         <New 
           handleOpenDialog={openDialog} 
           handleCloseDialog={handleDialogClose} 
-          saveTask={handleSaveTask}
+          saveTask={handleSaveTask} 
         />
-        <ToDoList tasks={tasks} />
+        <ToDoList 
+          tasks={tasks} 
+          handleDeleteTask={handleDeleteTask} 
+          handleUpdateTask={handleEditTask} 
+          />
+        <EditTask
+          taskToEdit={taskToEdit}
+          handleCloseDialog={handleDialogClose}
+          handleUpdateTask={handleUpdateTask}
+          open={editTaskDialogOpen}
+
+        />
       </form>
     </div>
   );
